@@ -13,18 +13,18 @@ class Products extends Component {
         product: null
       }
     }
+
+    this.props.getProducts();
   }
 
   render () {
     const productsList = this.props.products.map(product => {
-      return <li key={ product.id }>{ product.name }</li>
+      return <li key={ product.id }><button type="button" onClick={ () => this.props.getProduct(product.id) }>{ product.details.name }</button></li>
     });
-
-
-    console.log("RENDER:", this.props)
+    
     let product = null;
     if (this.props.product && this.props.product.id) {
-      product = <p>Name: { this.props.product.name }</p>
+      product = <p>Name: { this.props.product.details.name }</p>
     } else {
       product = <p>No product selected</p>
     }
@@ -32,9 +32,8 @@ class Products extends Component {
     return (
       <div>
         <h2>Products</h2>
-        <button type="button" onClick={ this.props.getProducts }>Get Products</button>
-        <button type="button" onClick={ () => this.props.getProduct('2') }>Get Product 2</button>
         <ul>{ productsList }</ul>
+
         <h1>Product</h1>
         { product }
       </div>

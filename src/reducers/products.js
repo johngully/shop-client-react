@@ -1,4 +1,3 @@
-const products = [{id: "1", name: "Product 1"}, {id: "2", name: "Product 2"}];
 const defaultState = {
   products: [],
   product: null
@@ -6,14 +5,24 @@ const defaultState = {
 
 const productsReducer = (state = defaultState, action) => {
   console.log('REDUCER:', 'productsReducer', 'ACTION:', action);
+
   switch (action.type) {
     case 'getProducts':
-      return Object.assign({}, state, {
-        products: [...products],
-      });
+      return state;
+    case 'getProductsSuccess':
+      return Object.assign({}, state, { products: [...action.payload] });
+    case 'getProductsError':
+      console.error('Error getting products', action.payload);
+      return state;
+
     case 'getProduct':
-      const product = state.products.find(product => product.id === action.payload);
-      return Object.assign({}, state, { product });
+      return state;
+    case 'getProductSuccess':
+      return Object.assign({}, state, { product: action.payload });
+    case 'getProductError':
+      console.error('Error getting product', action.payload);
+      return state;
+
     default:
       return state;
   }
