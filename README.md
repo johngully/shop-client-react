@@ -1,6 +1,14 @@
-# How to get setup
+# Shop Client React
+> Example shop client built with react & redux
 
-## Bootstrapping the application
+
+## Build setup
+```bash
+npm install
+npm start
+```
+
+## Bootstrapping a new application
 Use `create-react-app` to bootstrap the application
 ```bash
 npm install -g create-react-app
@@ -9,7 +17,7 @@ cd shop-client-react
 npm start
 ```
 
-## Configure redux
+### Configure redux for flux state management
 
 ```bash
 npm install redux react-redux
@@ -113,7 +121,7 @@ created to use the new functionality.  This component should be added the root
 application component `App.js`.
 
 
-## Configure redux-thunk for async actions
+### Configure redux-thunk for async actions
 
 ```bash
 npm install redux-thunk
@@ -137,7 +145,7 @@ export default store;
 Once the store has been updated with `redux-thunk` middleware, then the actions and reducers can be refactored to use async patterns where needed.
 
 
-## Configure react-router-redux for routing
+### Configure react-router-redux for routing
 
 ```bash
 npm install react-router-dom react-router-redux@next history
