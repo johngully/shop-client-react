@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router'
 import logo from './logo.svg';
 import './App.css';
 import Products from './components/products';
+import Product from './components/product';
 
 class App extends Component {
   render() {
@@ -14,7 +16,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Products />
+        <Route exact path="/" component={Products}></Route>
+        <Route exact path="/product/:id" component={Product}></Route>
       </div>
     );
   }
