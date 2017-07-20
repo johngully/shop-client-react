@@ -111,3 +111,27 @@ registerServiceWorker();
 Once the store, actions, and reducers are in place then a component should be
 created to use the new functionality.  This component should be added the root
 application component `App.js`.
+
+
+## Configure redux-thunk for async actions
+
+```bash
+npm install redux-thunk
+```
+
+`Store.js`
+```js
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+
+const middleware = applyMiddleware(thunk);
+
+const store = (initialState) => {
+  return createStore(rootReducer, initialState, middleware);
+}
+
+export default store;
+```
+
+Once the store has been updated with `redux-thunk` middleware, then the actions and reducers can be refactored to use async patterns where needed.
