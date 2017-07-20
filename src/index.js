@@ -5,13 +5,17 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import { Provider } from 'react-redux';
-import Store from './Store';
+import { Store, history } from './Store';
+
+import { ConnectedRouter } from 'react-router-redux'
 
 const store = new Store();
 
 ReactDOM.render(
   <Provider store={ store }>
-    <App />
+    <ConnectedRouter history={ history }>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

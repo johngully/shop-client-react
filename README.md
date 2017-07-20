@@ -135,3 +135,74 @@ export default store;
 ```
 
 Once the store has been updated with `redux-thunk` middleware, then the actions and reducers can be refactored to use async patterns where needed.
+
+
+## Configure react-router-redux for routing
+
+```bash
+npm install react-router-dom react-router-redux@next history
+```
+
+`Store.js`
+```js
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+import createHistory from 'history/createBrowserHistory';
+import { routerMiddleware } from 'react-router-redux';
+
+const history = createHistory();
+const router = routerMiddleware(history);
+
+const middleware = applyMiddleware(thunk, router);
+
+const Store = (initialState) => {
+  return createStore(rootReducer, initialState, middleware);
+}
+
+export { history, Store };
+export default Store;
+```
+
+`index.js`
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+
+import { Provider } from 'react-redux';
+import { Store, history } from './Store';
+
+import { ConnectedRouter } from 'react-router-redux'
+
+const store = new Store();
+
+ReactDOM.render(
+  <Provider store={ store }>
+    <ConnectedRouter history={ history }>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
+registerServiceWorker();
+```
+
+`reducers/index.js`
+```js
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
+import productsReducer from './products.js';
+
+const rootReducer = combineReducers({
+  router: routerReducer,
+  productsState: productsReducer
+});
+
+export default rootReducer;
+```
+
+Once the `react-router-dom` and `react-router-redux` have been introduced, routes
+can be added to `App.js` and components can use `<Link to="">` to navigate.
