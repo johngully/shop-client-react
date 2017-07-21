@@ -11,7 +11,8 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-scripts": "1.0.10",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "shop-patternpack": "github:johngully/shop-design-system-patternpack"
   },
   "scripts": {
     "start": "react-scripts start",

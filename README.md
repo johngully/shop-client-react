@@ -8,6 +8,39 @@ npm install
 npm start
 ```
 
+## Design system integration
+In order to include the design system into the react application the dependency
+needs to be added and the styles need to imported into the application.
+
+```bash
+npm install github:johngully/shop-design-system-patternpack
+```
+
+`index.js`
+```js
+import 'shop-patternpack/dist/pattern-library/assets/css/patterns.css';
+```
+
+#### A note on HTML image tags `<img src="..." />`
+In order to load images from the design system they must first be imported so that the react render function can find them.  Referencing images using a literal path will not work.
+
+```js
+import iconRemove from 'shop-patternpack/dist/pattern-library/assets/images/icon-remove.svg';
+
+class myComponent {
+  render() {
+    return (
+      <!-- Referencing the src using the imported variable works -->
+      <img src={iconRemove} />
+
+      <!-- Referencing the src directly does not work -->
+      <img src="shop-patternpack/dist/pattern-library/assets/images/icon-remove.svg" />
+    );
+  }
+}
+```
+
+
 ## Bootstrapping a new application
 Use `create-react-app` to bootstrap the application
 ```bash
